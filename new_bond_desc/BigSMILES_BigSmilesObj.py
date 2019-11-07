@@ -471,7 +471,7 @@ if __name__ == "__main__":
     ##testStr = '($1)-C\C=C/C(C)-($2)'
     #testStr = '{$=2CCO$1,$2CO$1}'
     testStr = '[$]{[$]CCCC[<1],CCC(C)C1CC1[<1]}C([>2])([<1])c1ccccc1'
-    testStr = '{[][<][Si](CC)(CC)O[>][]}'
+    testStr = '{[][<][Si](CC)(CC)O[>][$]}'
     #testStr = '{[][$]C\C=C/C[$][]}'
     
     #pattern = BigSmilesPattern._BSchainObjElement
