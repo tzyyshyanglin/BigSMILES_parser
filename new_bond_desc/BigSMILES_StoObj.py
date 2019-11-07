@@ -88,6 +88,8 @@ class BigSMILES_StoObj:
                 localpos += len(self.repUnit[-1].rawStr)+1
             #print(self.repUnit)
             #print(repUnit)
+            
+        
         #print('here2')
         #print(res.endGrp)
         for i in range(len(res.endGrp)):
@@ -112,7 +114,8 @@ class BigSMILES_StoObj:
         #print('here4')
         
         # update the right terminal bonding descriptor after entire object is parsed
-        self.rightEnd.checkConsistency(self.Bond_Dict,item=None)
+        if self.rightEnd:
+            self.rightEnd.checkConsistency(self.Bond_Dict,item=None)
         
         
         return None
@@ -212,7 +215,7 @@ class BigSMILES_StoObj:
             peeledStr = peeledStr[:-len(res.rawStr)]
         else:
             peeledStr = peeledStr[:]
-            
+
         return peeledStr
     
     def getBond(self,end='left'):

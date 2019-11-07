@@ -23,13 +23,14 @@ class BigSMILES_Bond:
                 else:                
                     self._id = res.BigSMILES_Bondid
             
-        self.S_bond = ''
-        
-        self.setS_bond(S_bond)
-        flag = self.checkConsistency(Bond_Dict,item)
-        if flag == -1:
-            raise BigSMILES_BondInconsistencyError
+            self.S_bond = ''
             
+            self.setS_bond(S_bond)
+            flag = self.checkConsistency(Bond_Dict,item)
+            if flag == -1:
+                raise BigSMILES_BondInconsistencyError
+        else:
+            self.noBond = True
 
 
     def setS_bond(self,S_bond):
