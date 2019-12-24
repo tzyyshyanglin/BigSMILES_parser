@@ -424,6 +424,59 @@ class BigSMILES(SMILES):
         return totF,noTypeBond,[x[0].getCompleteSymbol() for x in bonding_sites],[len(x)-1 for x in bonding_sites]
     
     
+    def numNeighAll(self):
+        valency = {'C': 4, 'c':3, 'H': 1, 'O': 2, 'o':1, 'N': 3, 'n': 2, 'S': 2, 's':1, 'F': 1, 'Cl': 1, 'Br': 1, 'I': 1, 'Si': 4}
+        typeToNum = {'': 1, '/': 1,'\\': 1, '-': 1, '=': 2,'#': 3}  
+        numNeighAll = {}
+        for node in self.G.nodes:
+            if self.G.nodes[node]['atom'] == "BigSMILES_Bond":
+                numNeighAll[node] = "BigSMILES_Bond"
+            else:
+                atomType = self.G.nodes[node]['atom']
+                numNeigh = valency.get(atomType)
+                for neigh in self.G.nodes[node]['neighList']:
+                    bondType = self.G.edges[node, neigh]['type']
+                    numNeigh -= typeToNum.get(bondType) - 1
+                atomBond = atomType.upper() + str(numNeigh)
+                numNeighAll[node] = atomBond
+        return numNeighAll
+    
+    
+    def path(self, start, length, visited= None):
+        paths = []
+        if visited is None:
+            visited = []
+        visited.append(start) 
+        if length == 1:
+            paths.append(visited)
+        else:
+            for node in self.G.adj[start]:
+                visitedCopy = visited[:]
+                if node not in visitedCopy:
+                    paths.extend(self.path(node, length-1, visitedCopy))
+        return paths
+    
+    
+    def multiplet(self, size):
+        numNeigh = self.numNeighAll()
+        multiplets = {}
+        for node in self.G.nodes:
+            paths = self.path(node, size)
+            for path in paths:
+                multiplet = []
+                for n in path:
+                    multiplet.append(numNeigh.get(n))
+                if 'BigSMILES_Bond' not in multiplet:
+                    multiplet = tuple(multiplet)
+                    if str(multiplet) in multiplets:
+                        multiplets[str(multiplet)]+=1/2
+                    elif str(multiplet[::-1]) in multiplets:
+                        multiplets[str(multiplet[::-1])]+=1/2
+                    else:
+                        multiplets[str(multiplet)]=1/2 
+        return multiplets  
+    
+    
 if __name__ == "__main__":
     testStr = 'C1(O[2H:1])=CC=CC=C1I'
     #testStr = 'C(=2)[CH2](C)(C)CC2'
