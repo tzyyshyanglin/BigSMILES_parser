@@ -1,27 +1,12 @@
-{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf600
-{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 HelveticaNeue;}
-{\colortbl;\red255\green255\blue255;\red10\green77\blue204;\red255\green255\blue255;\red0\green0\blue0;
-}
-{\*\expandedcolortbl;;\cssrgb\c1176\c40000\c83922;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
-}
-\margl1440\margr1440\vieww25400\viewh13780\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-
-\f0\fs24 \cf0 In the Tg paper, the coordination number for an atom (including H) is defined as the number of neighbors it has.\
-For example, C1 represents a carbon atom that has one neighbor.\
-A triplet is defined as three connected atoms and their coordination numbers in a monomer unit.\
+In the Tg paper, the coordination number for an atom (including H) is defined as the number of neighbors it has.
+For example, C1 represents a carbon atom that has one neighbor.
+A triplet is defined as three connected atoms and their coordination numbers in a monomer unit.
 Types of triplet or number of each triplet (not sure which method was used in the paper) (doublets and singlets might also be useful) presented in a monomer can be used to predict Tg\
-\
-The multiplet method added in 
-\f1 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\outl0\strokewidth0 \strokec2 BigSMILES_BigSmilesObj.py \cf4 can be used for extracting multiplets of any length for a BigSMILES object.\
-There are two helper methods this method calls on: \
-path method finds all paths of the specified length in the graph of the compound.\
-numNeighAll method return a dictionary that specifies the coordination number of each atom in the compound.\
-\
-The multipletWriter file takes the Tg dataset and outputs a new dataset that contains all the information of multiplets.\
-IMPORTANT: If a BigSMILES object has two names in the dataset, replace the name in the first column by the name in the third column so that the program can run properly.\
-\
 
-\f0 \cf0 \cb1 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
-}
+The multiplet method added in BigSMILES_BigSmilesObj.py can be used for extracting multiplets of any length for a BigSMILES object.\
+There are two helper methods this method calls on: 
+path method finds all paths of the specified length in the graph of the compound.
+numNeighAll method return a dictionary that specifies the coordination number of each atom in the compound.
+
+The multipletWriter file takes the Tg dataset and outputs a new dataset that contains all the information of multiplets.
+IMPORTANT: If a BigSMILES object has two names in the dataset, replace the name in the first column by the name in the third column so that the program can run properly.
